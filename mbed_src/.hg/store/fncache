@@ -1,0 +1,8 @@
+data/mbed.bld.i
+data/main.cpp.i
+data/wave_player.lib.i
+data/USBHost.lib.i
+data/SDFileSystem.lib.i
+data/wave_player_appbd.lib.i
+data/FATFileSystem.lib.i
+data/mbed-rtos.lib.i
