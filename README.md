@@ -9,7 +9,7 @@ A network attached storage (NAS) system built from a Raspberry Pi to save and lo
 
   
 
-[INSERT FINAL IMAGE HERE]
+![final-image-case](finalimagecase.jpg "title-1") ![final-image-lcd](finalimagelcd.jpg "title-2")
 
   
 
