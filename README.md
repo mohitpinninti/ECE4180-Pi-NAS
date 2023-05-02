@@ -130,4 +130,4 @@ Compile the get_stats_verbose.c file using ```gcc get_stats_verbose.c```
 <img src="box_2.jpg"  width="40%">  
 
 ## Demo Video
-[![Demo Video](finalimagecase.jpg)]({https://drive.google.com/file/d/1eY3ktBOjqsRpZMn5wWA6uxW0Deq4UkJh/view?usp=share_link} "Video Link")
+[<img src="finalimagecase.jpg" width="50%">](https://drive.google.com/file/d/1eY3ktBOjqsRpZMn5wWA6uxW0Deq4UkJh/view?usp=share_link "Now in Android: 55")
