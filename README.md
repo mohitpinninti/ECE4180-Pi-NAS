@@ -7,9 +7,10 @@ A network attached storage (NAS) system built from a Raspberry Pi to save and lo
 
 #### Developed by: Nicholas Schantz & Mohit Pinninti
 
-  
+<img src="finalimagecase.jpg"  width="50%">
+<img src="finalimagelcd.jpg"  width="43%">  
 
-![final-image-case](finalimagecase.jpg "title-1"=50%x) ![final-image-lcd](finalimagelcd.jpg "title-2"=50%x)
+<!-- ![final-image-case](finalimagecase.jpg) ![final-image-lcd](finalimagelcd.jpg) -->
 
   
 
@@ -91,7 +92,7 @@ sudo wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript
 
 5. Run ```ifconfig``` and navigate to the IP address shown for wlan0 (or your preferred network interface) on a different network-connected device. You should see a screen similar to the following:
 
-[INSERT OMV HOME SCREEN IMAGE HERE]
+![final-image-lcd](omv.png)
 
 6. Log in with the default credentials (you may want to change this password):
 		Username: admin
@@ -107,15 +108,15 @@ sudo wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript
 ## Setup MBed & uLCD with Metrics
 The mbed microcontroller will be used to communicate with a uLCD to display metrics regarding the usage of the disk, the Raspberry Pi CPU, RAM, and other errors. 
 
-1. Connect the uLCD to the mbed using the following schematic.
+1. Connect the uLCD to the mbed using the following pin-out:
 
-[INSERT SCHEMATIC HERE]
+![final-image-lcd](uLCD_Pins.png)
 
 Clone this repo. Navigate to [Keil Studio](https://studio.keil.arm.com/auth/login/) on your PC, create an account if you do not have one, and import the "mbed_src" folder from this repo as a new project. Compile this project and drag the ".bin" file into your mbed file system after connecting the mbed LPC1768 to your PC. The project is now loaded onto the mbed. This will receive formatted data from the Raspberry Pi to display on the uLCD.
 
 2. To send the data to the mbed & uLCD, the Raspberry Pi must first fetch all the data and format it. To do this, run ```sudo apt-get install git``` on the Raspberry Pi to install git. After git is installed, run ```git clone https://github.com/mohitpinninti/ECE4180-Pi-NAS.git``` to clone the repo so that the files from "pi_src" can be used.
 
-3. Perform the following (which are also specified in the README.md in the "pi_src" folder:
+3. Perform the following (which are also specified in the README.md in the "pi_src" folder):
 	1. Install bc using ```sudo apt install bc```
 	2. Add the full paths of the specified files to the top of the "get_stats_verbose.c" file and compile it
 	3. Add a crontask. This can be done by opening the cron scheduler using ```crontab -e``` and appending ```@reboot "PATH TO COMPILIED 'get_stats_verbose.c'"``` to the end of the file.
