@@ -7,8 +7,8 @@ A network attached storage (NAS) system built from a Raspberry Pi to save and lo
 
 #### Developed by: Nicholas Schantz & Mohit Pinninti
 
-<img src="finalimagecase.jpg"  width="50%">
-<img src="finalimagelcd.jpg"  width="43%">  
+<img src="finalimagecase.jpg"  width="45%">
+<img src="finalimagelcd.jpg"  width="40%">  
 
 <!-- ![final-image-case](finalimagecase.jpg) ![final-image-lcd](finalimagelcd.jpg) -->
 
@@ -122,4 +122,9 @@ Clone this repo. Navigate to [Keil Studio](https://studio.keil.arm.com/auth/logi
 	3. Add a crontask. This can be done by opening the cron scheduler using ```crontab -e``` and appending ```@reboot "PATH TO COMPILIED 'get_stats_verbose.c'"``` to the end of the file.
 Compile the get_stats_verbose.c file using ```gcc get_stats_verbose.c```
 
-4. Finally, connect the Pi to the mbed and restart the pi using ```sudo reboot```. 
+4. Finally, connect the Pi to the mbed and restart the Pi using ```sudo reboot```. This is it! The Pi should automatically send data to the mbed as well as automatically connect to the network and be able to share data using SMB. 
+
+5. Packaging: The mbed, Pi and LCD can be fitted into a 3D printed case, for which we have included the model in the github.
+
+<img src="box_1.jpg"  width="40%">
+<img src="box_2.jpg"  width="40%">  
