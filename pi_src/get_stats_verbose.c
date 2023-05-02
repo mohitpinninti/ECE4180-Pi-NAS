@@ -6,11 +6,18 @@
 #include <termios.h>
 #include <stdlib.h>
 
+char *UPTIME_PATH = "EDIT THIS TO FULL PATH TO uptime.sh";
+char *DRIVE_PATH = "EDIT THIS TO FULL PATH TO disk.sh";
+char *RAM_PATH = "EDIT THIS TO FULL PATH TO ram.sh";
+char *CPU_PATH = "EDIT THIS TO FULL PATH TO cpu.sh";
+char *TEMP_PATH = "EDIT THIS TO FULL PATH TO temp.sh";
+
 int main(int argc, char ** argv) {
 	int fd;
 	char buf[256];
 	int n;
 
+	// Open port for communication to mbed
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
 	if (fd == -1) {
 		perror("open_port: Unable to open /dev/ttyACM0 - ");
@@ -19,6 +26,7 @@ int main(int argc, char ** argv) {
 
 	fcntl(fd, F_SETFL, 0);
 
+	// Setup serial to mbed
 	struct termios options;
 	tcgetattr(fd, &options);
 	cfsetspeed(&options, B9600);
@@ -30,12 +38,11 @@ int main(int argc, char ** argv) {
 	sleep(1);
 
 	while(1) {
-
 		// READING UPTIME OF PI
 		FILE *fp_uptime;
 		char uptime[20];	
 
-		fp_uptime = popen("/home/mohit/scripts/uptime.sh", "r");
+		fp_uptime = popen(UPTIME_PATH, "r");
 		if (fp_uptime == NULL) {
 		    return -1;
 		}
@@ -43,12 +50,11 @@ int main(int argc, char ** argv) {
 		fgets(uptime, sizeof(uptime), fp_uptime);	
 		printf("%s\n", uptime);
 		
-		//n = write(fd, "Hello mbed\r", 11);	
 		n = write(fd, uptime, 5);
 		if (n < 0) {
 			perror("Write failed - ");
 		}
-		// Read the chars from the port if they are there
+
 		sleep(2);
 		n = read(fd, buf, 5);
 		if (n < 0) {
@@ -65,7 +71,7 @@ int main(int argc, char ** argv) {
 		FILE *fp_memory;
 		char memory[20];
 
-		fp_memory = popen("/home/mohit/scripts/disk.sh", "r");
+		fp_memory = popen(DRIVE_PATH, "r");
 		if (fp_memory == NULL) {
 			return -1;
 		}
@@ -92,7 +98,7 @@ int main(int argc, char ** argv) {
 		FILE *fp_ram;
 		char ram[20];
 
-		fp_ram = popen("/home/mohit/scripts/ram.sh", "r");
+		fp_ram = popen(RAM_PATH, "r");
 		if (fp_ram == NULL) {
 			return -1;
 		}
@@ -119,7 +125,7 @@ int main(int argc, char ** argv) {
 		FILE *fp_cpu;
 		char cpu[20];
 
-		fp_cpu = popen("/home/mohit/scripts/cpu.sh", "r");
+		fp_cpu = popen(CPU_PATH, "r");
 		if (fp_cpu == NULL) {
 			return -1;
 		}
@@ -146,7 +152,7 @@ int main(int argc, char ** argv) {
 		FILE *fp_temp;
 		char temp[20];
 
-		fp_temp = popen("/home/mohit/scripts/temp.sh", "r");
+		fp_temp = popen(TEMP_PATH, "r");
 		if (fp_temp == NULL) {
 			return -1;
 		}
@@ -172,46 +178,6 @@ int main(int argc, char ** argv) {
 		// End of sends
 		sleep(5);
 	}
-
-	/*FILE *fp;
-	char uptime[20];	
-
-	fp = popen("../uptime.sh", "r");
-	if (fp == NULL) {
-	    return -1;
-	}
-	
-	fgets(uptime, sizeof(uptime), fp);	
-	printf("%s\n", uptime);
-	pclose(fp);
-
-	int y = 0;
-	char str[2];
-	while(uptimeFormatted[y] != '\0') {	
-		str[0] = uptimeFormatted[y];
-		str[1] = '\0';
-		n = write(fd, str, 1);
-		/**sleep(2);
-		n = read(fd, buf, 1);
-		printf("%c", buf[0]);
-		***
-		sleep(1);
-		y++;
-	}
-	//n = write(fd, uptimeFormatted, 5);	
-	if (n < 0) {
-	    perror("Write failed - ");
-	    return -1;
-	}
-
-	sleep(2);
-	n = read(fd, buf, 4);
-	sleep(1);
-	buf[4] = '\0';
-	printf("%s", buf);
-
-	tcdrain(fd);
-	close(fd);*/
 
 	return 0;
 }
