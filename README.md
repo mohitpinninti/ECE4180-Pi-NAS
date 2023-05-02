@@ -124,7 +124,10 @@ Compile the get_stats_verbose.c file using ```gcc get_stats_verbose.c```
 
 4. Finally, connect the Pi to the mbed and restart the Pi using ```sudo reboot```. This is it! The Pi should automatically send data to the mbed as well as automatically connect to the network and be able to share data using SMB. 
 
-5. Packaging: The mbed, Pi and LCD can be fitted into a 3D printed case, for which we have included the model in the github.
+5. Optional Packaging: The mbed, Pi and LCD can be fitted into a 3D printed case, for which we have included the model in the github.
 
 <img src="box_1.jpg"  width="40%">
 <img src="box_2.jpg"  width="40%">  
+
+## Demo Video
+[![Demo Video](finalimagecase.jpg)]({https://drive.google.com/file/d/1eY3ktBOjqsRpZMn5wWA6uxW0Deq4UkJh/view?usp=share_link} "Video Link")
